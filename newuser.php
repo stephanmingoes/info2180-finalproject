@@ -95,7 +95,7 @@ if (isset($_POST['Save'])) {
                     </div>
                     <div>
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="Password must have at least one letter, one number, and one capital letter, and must be at least 8 characters long." required>
+                        <input type="password" id="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[^\n]{8,}$" title="Password must have at least one letter, one number, and one capital letter, and must be at least 8 characters long." required>
                     </div>
                 </div>
                 <div class="input">
