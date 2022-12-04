@@ -358,6 +358,25 @@ select {
     padding: 15px 15px 15px 15px;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
+.table-box-vcni {
+    margin-top: 10px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgb(210, 210, 210);
+    padding: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.table-box-vcni input{
+    height: 60px;
+}
+.table-box-vcni button {
+    background-color: #4f46e5;
+    width: 3.5rem;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
 .note-box{
     display: flex;
     flex-direction: column;

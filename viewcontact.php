@@ -17,6 +17,69 @@ $usersql = "SELECT * FROM users WHERE id={$row['9']}";
 // Execute the SQL statement
 $userresult = mysqli_query($conn, $usersql);
 $userrow = mysqli_fetch_row($userresult);
+
+// Construct the INSERT SQL statement
+$assignedsql = "SELECT * FROM users WHERE id={$row['8']}";
+
+// Execute the SQL statement
+$assignedresult = mysqli_query($conn, $assignedsql);
+$assignedrow = mysqli_fetch_row($assignedresult);
+
+// Construct the INSERT SQL statement
+$notessql = "SELECT * FROM notes WHERE contact_id='$id'";
+
+// Execute the SQL statement
+$notesresult = mysqli_query($conn, $notessql);
+$notesrow = mysqli_fetch_all($notesresult);
+foreach($notesrow as &$note){
+    $userquerysql = "SELECT * FROM users WHERE id={$note['3']}";
+
+    // Execute the SQL statement
+    $noteuserresult = mysqli_query($conn, $userquerysql);
+    $noteeuserrow = mysqli_fetch_row($noteuserresult);
+
+    $note['3'] = "{$noteeuserrow['1']} {$noteeuserrow['2']}";
+}
+if($row['7']=="Sales Lead"){
+    $nextoption = "Support";
+} else if($row['7']=="Support") {
+    $nextoption = "Sales Lead";
+}
+if (isset($_POST['Save'])) {
+    $comment = htmlspecialchars($_POST['comment']);
+    $contact_id = $id;
+    $created_by = $session_id;
+
+    $sql = "INSERT INTO Notes (contact_id, comment, created_by, created_at) 
+    VALUES ('$contact_id', '$comment', '$created_by', CURRENT_TIMESTAMP)";
+
+
+    $result = $conn->query($sql);
+    if (!$result) {
+        echo "<script>alert('Contact failed to add!')</script>";
+    }
+    header("Location: viewcontact.php?id={$id}");
+    exit;
+}
+if (isset($_POST['assign'])) {
+    $assignQuery = $conn->prepare("UPDATE Contacts SET updated_at=CURRENT_TIMESTAMP, assigned_to=? WHERE id=?;");
+    
+    $assignQuery->bind_param("ss", $session_id, $id);
+    $assignresult = $assignQuery->execute();
+
+    header("Location: viewcontact.php?id={$id}");
+    exit;
+}
+if (isset($_POST['switch'])) {
+    $switchQuery = $conn->prepare("UPDATE Contacts SET type=? WHERE id=?;");
+    
+    $switchQuery->bind_param("ss", $nextoption, $id);
+    $switchresult = $switchQuery->execute();
+
+    header("Location: viewcontact.php?id={$id}");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +87,11 @@ $userrow = mysqli_fetch_row($userresult);
 
 <head>
     <link rel="stylesheet" href="styles.css">
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 </head>
 
 <body>
@@ -47,12 +115,12 @@ $userrow = mysqli_fetch_row($userresult);
             <div class="contact-title-block">
                 <h1><?= "{$row['1']}. {$row['2']} {$row['3']}"  ?></h1>
                 <p class="txt-grey"><?= "Created on {$row['10']} by {$userrow['1']} {$userrow['2']}" ?></p>
-                <p class="txt-grey"><?= "Updated on {$row['11']} by {$userrow['1']} {$userrow['2']}" ?></p>
+                <p class="txt-grey"><?= "Updated on {$row['11']}" ?></p>
             </div>
 
             <div class="contact-action-box">
-                <button id="assign-btn">Assign To Me</button>
-                <button id="switch-btn">Switch to Sales Lead</button>
+                <form action=<?= "viewcontact.php?id={$id}" ?> method="POST"><button type="submit" id="assign-btn" name="assign">Assign To Me</button></form>
+                <form action=<?= "viewcontact.php?id={$id}" ?> method="POST"><button type="submit" id="switch-btn" name="switch"><?= "Switch to {$nextoption}" ?></button></form>
             </div>
         </div>
 
@@ -71,7 +139,7 @@ $userrow = mysqli_fetch_row($userresult);
             </div>
             <div class="contact-info-box">
                 <p class="txt-grey">Assigned To</p>
-                <p>John Doe</p>
+                <p><?= "{$assignedrow['1']} {$assignedrow['2']}"?></p>
             </div>
         </div>
         <br />
@@ -79,22 +147,21 @@ $userrow = mysqli_fetch_row($userresult);
             <h3>Notes</h3>
             <br/>
             <hr />
-
-            <div class="note-box">
-                <h4>John Doe</h4>
-                <p class="txt-grey">Lorem ipsum dolor sit amet. Aut nisi pariatur et officiis velit sit laborum ullam aut maxime neque eos eius ipsam qui internos autem. Ea voluptas quae qui facere voluptatem est soluta deleniti aut quidem adipisci.</p>
-                <p class="txt-grey">November 10, 2022</p>
-            </div>
-            <div class="note-box">
-                <h4>John Doe</h4>
-                <p class="txt-grey">Lorem ipsum dolor sit amet. Aut nisi pariatur et officiis velit sit laborum ullam aut maxime neque eos eius ipsam qui internos autem. Ea voluptas quae qui facere voluptatem est soluta deleniti aut quidem adipisci.</p>
-                <p class="txt-grey">November 10, 2022</p>
-            </div>
-            <div class="note-box">
-                <h4>John Doe</h4>
-                <p class="txt-grey">Lorem ipsum dolor sit amet. Aut nisi pariatur et officiis velit sit laborum ullam aut maxime neque eos eius ipsam qui internos autem. Ea voluptas quae qui facere voluptatem est soluta deleniti aut quidem adipisci.</p>
-                <p class="txt-grey">November 10, 2022</p>
-            </div>
+            <?php foreach($notesrow as $note){ ?>
+                <div class="note-box">
+                    <h4><?= $note['3'] ?></h4>
+                    <p class="txt-grey"><?= $note['2'] ?></p>
+                    <p class="txt-grey"><?= $note['4'] ?></p>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="table-box-vcni">
+            <form action=<?= "viewcontact.php?id={$id}" ?> method="POST">
+                <h3>Add a note about <?= $row['2'] ?></h3>
+                <br/>
+                <input id="comment" name="comment" placeholder="Enter details here" required/>
+                <button type="submit" name="Save">Submit</button>
+            </form>
         </div>
     </div>
 </body>
