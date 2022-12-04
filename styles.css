@@ -196,3 +196,67 @@ select {
     border: none;
     padding: 0.5rem;
 }
+.contact-header-box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 25px;
+}
+#assign-btn{
+    width: 100px;
+    height: 50px;
+    border: none;
+    background-color: rgb(19, 133, 62);
+    cursor: pointer;
+    color: white;
+}   
+#switch-btn{
+    width: 150px;
+    height: 50px;
+    border: none;
+    background-color: rgb(140, 172, 25);
+    cursor: pointer;
+    color: white;
+}   
+.main-content-vc {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-left: thin solid black;
+    padding: 2rem;
+    height: 100vh;
+}
+.table-box-vc {
+    margin-top: 10px;
+    width: 100%;
+    height: 25vh;
+    margin: 0 auto;
+    background-color: white;
+    padding: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-areas: "a b"
+                         "c d";
+    align-items: center;
+}
+.table-box-vcn {
+    margin-top: 10px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.note-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.add-note-box{
+    background-color: rgb(134, 134, 134);
+}
+.txt-grey{
+    color: rgb(134, 134, 134);
+}

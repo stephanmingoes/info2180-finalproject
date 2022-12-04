@@ -1,5 +1,16 @@
 <?php
+// Include the necessary files
 include 'session.php';
+include 'database_connection.php';
+
+// Construct the INSERT SQL statement
+$sql = "SELECT * FROM users";
+
+// Execute the SQL statement
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_all($result);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +39,7 @@ include 'session.php';
     <div class="main-content">
         <div class="home-title-box">
             <h1>Dashboard</h1>
-            <button>Add Contact</button>
+            <button onclick="window.location.href='newcontact.php'">Add Contact</button>
         </div>
         <br />
         <br />
@@ -61,41 +72,15 @@ include 'session.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Mr. Tashyn Wallace</strong></td>
-                        <td class="table-email-text">text1.2</td>
-                        <td class="table-company-text">text1.3</td>
-                        <td class="table-type-text">text1.4</td>
-                        <td class="table-type-view">View</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mr. Stephan Mingoes</strong></td>
-                        <td class="table-email-text">text1.2</td>
-                        <td class="table-company-text">text1.3</td>
-                        <td class="table-type-text">text1.4</td>
-                        <td class="table-type-view">View</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ms. Gizelle Paisley</strong></td>
-                        <td class="table-email-text">text1.2</td>
-                        <td class="table-company-text">text1.3</td>
-                        <td class="table-type-text">text1.4</td>
-                        <td class="table-type-view">View</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mr. John Doe</strong></td>
-                        <td class="table-email-text">text1.2</td>
-                        <td class="table-company-text">text1.3</td>
-                        <td class="table-type-text">text1.4</td>
-                        <td class="table-type-view">View</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ms. Jane Doe</strong></td>
-                        <td class="table-email-text">text1.2</td>
-                        <td class="table-company-text">text1.3</td>
-                        <td class="table-type-text">text1.4</td>
-                        <td class="table-type-view">View</td>
-                    </tr>
+                    <?php foreach($row as $user){ ?>
+                        <tr>
+                            <td><strong>Mr. <?= "{$user['1']} {$user['2']}"  ?></strong></td>
+                            <td class="table-email-text"><?= $user['4'] ?></td>
+                            <td class="table-company-text">text1.3</td>
+                            <td class="table-type-text"><?= $user['5'] ?></td>
+                            <td class="table-type-view">View</td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
