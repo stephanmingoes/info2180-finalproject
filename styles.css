@@ -82,58 +82,117 @@ hr {
     color: white;
     font-size: 1rem;
 }
-.home-title-box{
+.home-title-box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 85%;
     margin: 0 auto;
 }
-.home-title-box button{
+.home-title-box button {
     width: 100px;
     border: none;
     background-color: rgb(93, 53, 119);
     cursor: pointer;
     color: white;
 }
-.table-box{
+.table-box {
     width: 85%;
     height: 75vh;
     margin: 0 auto;
     background-color: white;
     padding: 15px 15px 15px 15px;
 }
-.table-box table{
+.table-box table {
     width: 100%;
     border: thin solid #ccc;
 }
-.table-box table, td{
+.table-box table,
+td {
     border-bottom: thin solid #ccc;
     border-collapse: collapse;
 }
-.table-box table thead tr{
+.table-box table thead tr {
     background-color: #ccc;
     text-align: left;
 }
-.table-box table th, td {
+.table-box table th,
+td {
     padding: 12px 15px;
 }
-.options-box{
+.options-box {
     display: flex;
     flex-direction: row;
     gap: 30px;
 }
-.options-box span{
+.options-box span {
     color: rgb(134, 134, 134);
     cursor: pointer;
 }
-.options-box span:active{
+.options-box span:active {
     border-bottom: #4f46e5;
 }
-.table-email-text, .table-company-text{
+.table-email-text,
+.table-company-text {
     color: rgb(134, 134, 134);
 }
-.table-type-view{
+.table-type-view {
     color: #4f46e5;
     cursor: pointer;
+}
+
+.page-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.white-box {
+    width: 100%;
+    /* height: 100vh; */
+    border-radius: 10px;
+    background-color: white;
+    padding: 1rem;
+}
+
+.add-something {
+    display: flex;
+    flex-direction: column;
+}
+.add-something .input {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+.add-something .input div {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.add-something label {
+    margin-bottom: 0.5rem;
+}
+.add-something input,
+select {
+    padding: 0.5rem;
+    width: 95%;
+    border: none;
+    outline: none;
+    border: 1px solid rgb(210, 210, 210);
+    border-radius: 10px;
+}
+
+.submit-btn-div {
+    background-color: rgb(225, 225, 225);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 0.5rem 1rem 0;
+    border-radius: 10px;
+}
+.submit-btn-div input {
+    background-color: #4f46e5;
+    width: 3.5rem;
+    color: white;
+    border: none;
+    padding: 0.5rem;
 }
