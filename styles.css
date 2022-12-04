@@ -43,6 +43,8 @@ hr {
     margin-bottom: 1rem;
 }
 .main-content {
+    display: flex;
+    flex-direction: column;
     background: #ccc;
     padding: 2rem;
     height: 100vh;
@@ -72,11 +74,66 @@ hr {
 .login form input {
     margin-bottom: 1.3rem;
     border: 1px solid rgb(209, 209, 209);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 1rem;
 }
 .login-btn {
     background-color: #4f46e5;
     color: white;
     font-size: 1rem;
+}
+.home-title-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 85%;
+    margin: 0 auto;
+}
+.home-title-box button{
+    width: 100px;
+    border: none;
+    background-color: rgb(93, 53, 119);
+    cursor: pointer;
+    color: white;
+}
+.table-box{
+    width: 85%;
+    height: 75vh;
+    margin: 0 auto;
+    background-color: white;
+    padding: 15px 15px 15px 15px;
+}
+.table-box table{
+    width: 100%;
+    border: thin solid #ccc;
+}
+.table-box table, td{
+    border-bottom: thin solid #ccc;
+    border-collapse: collapse;
+}
+.table-box table thead tr{
+    background-color: #ccc;
+    text-align: left;
+}
+.table-box table th, td {
+    padding: 12px 15px;
+}
+.options-box{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.options-box span{
+    color: rgb(134, 134, 134);
+    cursor: pointer;
+}
+.options-box span:active{
+    border-bottom: #4f46e5;
+}
+.table-email-text, .table-company-text{
+    color: rgb(134, 134, 134);
+}
+.table-type-view{
+    color: #4f46e5;
+    cursor: pointer;
 }
