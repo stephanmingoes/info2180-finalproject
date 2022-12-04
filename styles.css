@@ -82,6 +82,116 @@ hr {
     color: white;
     font-size: 1rem;
 }
+/* new user */
+h2 {
+    text-align: left;
+    text-indent: 2%;
+    color: black;
+    margin: 40px 0 0;
+    margin: auto;
+    background: #ccc;
+}
+textarea {
+    width: calc(100% - 12px);
+    padding: 3px;
+}
+
+form {
+    width: 100%;
+    padding: 20px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 8px #e7e8e7f6;
+}
+
+input,
+select,
+textarea,
+select {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+input {
+    width: calc(100% - 10px);
+    padding: 5px;
+}
+input[type="date"] {
+    padding: 4px 5px;
+}
+textarea {
+    width: calc(100% - 12px);
+    padding: 5px;
+}
+.item:hover p,
+.item:hover i,
+.question:hover p,
+.question label:hover,
+input:hover::placeholder {
+    color: #006622;
+}
+.checkbox input[type="checkbox"] {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+    vertical-align: text-top;
+}
+.item input:hover,
+.item select:hover,
+.item textarea:hover {
+    border: 1px solid transparent;
+    box-shadow: 0 0 3px 0 #006622;
+    color: #006622;
+}
+.item {
+    position: relative;
+    margin: 10px 0;
+}
+
+.colums {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.colums div {
+    width: 48%;
+}
+.field-wrap {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+select {
+    width: calc(100% - 10px);
+    padding: 5px;
+}
+.field-wrap select {
+    width: calc(7% - 10px);
+    padding: 5px;
+}
+
+.btn-block {
+    margin-top: 10px;
+    text-align: center;
+    background: #ccc;
+    padding: 9px 0;
+}
+.nc-btn {
+    width: 75px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #4f46e5;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.nc-btn:hover {
+    background: #0666a3;
+}
 .home-title-box {
     display: flex;
     flex-direction: row;
@@ -259,4 +369,10 @@ select {
 }
 .txt-grey{
     color: rgb(134, 134, 134);
+}
+.ml-auto {
+    margin-left: auto;
+}
+.d-block {
+    display: block;
 }
