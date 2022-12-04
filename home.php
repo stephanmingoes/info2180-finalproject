@@ -3,13 +3,22 @@
 include 'session.php';
 include 'database_connection.php';
 
-// Construct the INSERT SQL statement
-$sql = "SELECT * FROM users";
-
-// Execute the SQL statement
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_all($result);
-
+if(!isset($_GET['fetch'])){
+    if(!isset($_GET['query'])){
+        $sql = "SELECT * FROM contacts";
+    } else {
+        $filter = $_GET['query'];
+        $sql = "SELECT * FROM contacts WHERE type='$filter'";   
+    }
+    
+    // Execute the SQL statement
+    $result = mysqli_query($conn, $sql);
+    $row =  mysqli_fetch_all($result);
+} else {
+    $sql = "SELECT * FROM contacts WHERE assigned_to='$session_id'";
+    $result = mysqli_query($conn, $sql);
+    $row =  mysqli_fetch_all($result);
+}
 
 ?>
 
@@ -47,16 +56,16 @@ $row = mysqli_fetch_all($result);
             <div class="options-box">
                 <strong>Filter By:</strong>
                 <span>
-                    All
+                    <a href="home.php" style="text-decoration: none; color: inherit;">All</a>
                 </span>
                 <span>
-                    Sales Lead
+                    <a href="home.php?query=Sales Lead" style="text-decoration: none; color: inherit;">Sales Lead</a>
                 </span>
                 <span>
-                    Support
+                    <a href="home.php?query=Support" style="text-decoration: none; color: inherit;">Support</a>
                 </span>
                 <span>
-                    Assigned to me
+                <a href=<?= "home.php?fetch={$session_id}"?> style="text-decoration: none; color: inherit;">Assigned to me</a>
                 </span>
             </div>
             <br/>
@@ -74,11 +83,11 @@ $row = mysqli_fetch_all($result);
                 <tbody>
                     <?php foreach($row as $user){ ?>
                         <tr>
-                            <td><strong>Mr. <?= "{$user['1']} {$user['2']}"  ?></strong></td>
+                            <td><strong><?= "{$user['1']}. {$user['2']} {$user['3']}"  ?></strong></td>
                             <td class="table-email-text"><?= $user['4'] ?></td>
-                            <td class="table-company-text">text1.3</td>
-                            <td class="table-type-text"><?= $user['5'] ?></td>
-                            <td class="table-type-view">View</td>
+                            <td class="table-company-text"><?= $user['6'] ?></td>
+                            <td class="table-type-text"><?= $user['7'] ?></td>
+                            <td class="table-type-view"><a href=<?="viewcontact.php?id={$user['0']}"?> style="text-decoration: none;">View</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>

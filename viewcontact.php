@@ -2,7 +2,21 @@
 // Include the necessary files
 include 'session.php';
 include 'database_connection.php';
+$id = $_GET["id"];
 
+// Construct the INSERT SQL statement
+$sql = "SELECT * FROM contacts WHERE id={$id}";
+
+// Execute the SQL statement
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_row($result);
+
+// Construct the INSERT SQL statement
+$usersql = "SELECT * FROM users WHERE id={$row['9']}";
+
+// Execute the SQL statement
+$userresult = mysqli_query($conn, $usersql);
+$userrow = mysqli_fetch_row($userresult);
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +45,9 @@ include 'database_connection.php';
     <div class="main-content-vc">
         <div class="contact-header-box">
             <div class="contact-title-block">
-                <h1>Mr. Michael Scott</h1>
-                <p class="txt-grey">Created on 6/6/6666 by John Doe</p>
-                <p class="txt-grey">Updated on 6/6/6666 by Michael Baphomet</p>
+                <h1><?= "{$row['1']}. {$row['2']} {$row['3']}"  ?></h1>
+                <p class="txt-grey"><?= "Created on {$row['10']} by {$userrow['1']} {$userrow['2']}" ?></p>
+                <p class="txt-grey"><?= "Updated on {$row['11']} by {$userrow['1']} {$userrow['2']}" ?></p>
             </div>
 
             <div class="contact-action-box">
@@ -45,15 +59,15 @@ include 'database_connection.php';
         <div class="table-box-vc">
             <div class="contact-info-box">
                 <p class="txt-grey">Email</p>
-                <p>tashyn1@mailsac.com</p>
+                <p><?= $row['4'] ?></p>
             </div>
             <div class="contact-info-box">
                 <p class="txt-grey">Telephone</p>
-                <p>876-666-6666</p>
+                <p><?= $row['5'] ?></p>
             </div>
             <div class="contact-info-box">
                 <p class="txt-grey">Company</p>
-                <p>The Paper Company</p>
+                <p><?= $row['6'] ?></p>
             </div>
             <div class="contact-info-box">
                 <p class="txt-grey">Assigned To</p>

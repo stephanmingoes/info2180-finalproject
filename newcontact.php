@@ -83,10 +83,10 @@ if (isset($_POST['Save'])) {
                 <div class="field-wrap">
                     <label>Title</label><br>
                     <select name="title" id="title">
-                        <option value="ms">Ms</option>
-                        <option value="miss">Miss</option>
-                        <option value="mrs">Mrs</option>
-                        <option value="mr" selected>Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Mr" selected>Mr</option>
                     </select>
 
                 </div>
