@@ -95,20 +95,7 @@ textarea {
     width: calc(100% - 12px);
     padding: 3px;
 }
-.testbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: inherit;
-    padding: 20px;
-    background: #ccc;
-}
-.testbox-n {
-    justify-content: left;
-    align-items: left;
-    padding: 10px 0;
-    background: #ccc;
-}
+
 form {
     width: 100%;
     padding: 20px;
@@ -191,7 +178,7 @@ select {
     background: #ccc;
     padding: 9px 0;
 }
-button {
+.nc-btn {
     width: 75px;
     padding: 10px;
     border: none;
@@ -202,7 +189,7 @@ button {
     cursor: pointer;
     margin-right: 20px;
 }
-button:hover {
+.nc-btn:hover {
     background: #0666a3;
 }
 .home-title-box {
